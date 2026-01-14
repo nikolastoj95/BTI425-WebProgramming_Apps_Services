@@ -1,32 +1,37 @@
-let peopleData = require('./data.json')
-let newId = peopleData.length;
-console.log(newId)
+let peopleData = require('./data.json');
+//let newId = peopleData.length;
+//console.log(newId)
 
 const ids = peopleData.map(pData => pData.id)
-console.log(ids)
+console.log(ids) // array of ids found in peopleData (data.json)
 
-const maxId = Math.max(...ids)
+const maxId = Math.max(...ids) // calculate the max id in that array, using ...ids to take them out of array for Math.max to work
 console.log(maxId)
-const idNew = maxId +1;
-console.log(idNew)
+let newId = maxId;
+console.log(newId)
 
 //CREATE
 // add a new person
 function addAPerson(newfName, newlName, newEmail ){
     
     return new Promise ((resolve,reject)=>{
+        console.log("pervious one", newId)
         newId++;
+        console.log("next one now", newId)
+      
         peopleData.push({
             id:newId, 
             firstName:newfName, 
             lastName: newlName, 
             email: newEmail 
         })
-        resolve("Person Added!")
+        resolve({
+            message: "Person Added!",
+            person: peopleData[peopleData.length -1]
+        })
 
     })
 }
-
 //READ
 //get all people
 function getAllPeople(){
@@ -92,7 +97,5 @@ function deletePersonById(id){
     })
 
 }
-
-
 
 module.exports= {getAllPeople,getPeopleById, addAPerson, updatePersonById,deletePersonById};
