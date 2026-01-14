@@ -6,21 +6,16 @@ let personData = require('./modules/peopleDataCRUD.js');
 
 app.use(express.json()); // body parsing middleware to handle JSON in the body
 
-app.get("/",(req,res)=>{
-    console.log(personData[0].firstName)
-    res.send(`Hello`)
-})
-
 //Endpoints
 //CREATE
 //POST
 //add a new person 
 app.post("/api/items",async(req,res)=>{
-    res.status(201).send({ message: await personData.addAPerson(
+    res.status(201).send(await personData.addAPerson(
         req.body.firstName,
         req.body.lastName,
         req.body.email
-    )})
+    ))
 });
 
 //READ
