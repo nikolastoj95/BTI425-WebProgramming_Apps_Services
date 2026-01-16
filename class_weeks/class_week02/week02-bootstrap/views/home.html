@@ -18,8 +18,58 @@
 </head>
 <body>
     <!--Nav Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Posts Dataset</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <form class="d-flex" id="searchForm">
+                    <input class="form-control me-2" type="search" placeholder="User ID (Number)" id="userId"
+                        aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
     <!--Table showing the API posts-->
+    <br/>
+    <br/>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover table-striped" id="postsTable">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Title</th>
+                            <th>Body</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
     <!--Modal window showing comments-->
-    
+    <div class="modal fade" tabindex="-1" id="commentsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Comments</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
