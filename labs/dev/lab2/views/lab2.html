@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab2</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script>
+        //wait for dom to be loaded
+        //function showing all products
+        async function populateProducts (){
+
+            let url = `http://localhost:8080/allProducts`;
+
+            let res = await fetch (url)
+            let data = await res.json ();
+
+            let prodRows = ` ${data.map(prod => (
+                    `<tr>
+                            <td>${prod.id}</td>
+                            <td>${prod.name}</td>
+                            <td>${prod.price}</td>
+                    </tr>`
+                    
+            )).join ('')}`;
+
+            document.querySelector('#productTable tbody').innerHTML = prodRows;
+            console.log(prodRows)
+
+            document.querySelectorAll("#enterProdID tbody")
+
+
+
+        }
+
+
+        async function getProductById() {
+
+            const id = document.querySelector('#productID').value;
+            console.log(id)
+
+            if (!id) {
+                document.querySelector('#productResult').innerHTML =  `<div class="text-danger">Enter an ID</div>`;
+                return;
+            }
+
+            let url = `http://localhost:8080/allProducts/${id}`;
+
+            let res = await fetch (url);
+            let prod = await res.json();
+
+            let prodRows = 
+                    `<tr>
+                            <td>${prod.id}</td>
+                            <td>${prod.name}</td>
+                            <td>${prod.price}</td>
+                    </tr>`;
+            document.querySelector('#productTable tbody').innerHTML = prodRows;
+        }
+
+
+
+
+           // Execute when the DOM is 'ready'
+        document.addEventListener('DOMContentLoaded', ()=>{
+             populateProducts(); // products all
+
+             document.querySelector('#btnGetByID').addEventListener('click', getProductById);
+            
+        });
+ 
+
+
+
+
+
+
+    </script>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover" id="productTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cell A</td>
+                            <td>Cell B</td>
+                            <td>Cell C</td>
+                        </tr>
+                        <tr>
+                            <td>Cell D</td>
+                            <td>Cell E</td>
+                            <td>Cell F</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="productResult" class="input-group input-group-sm mb-3" id="enterProdID">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Find By ID</span>
+                    <input id="productID" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <button  id= "btnGetByID" type="button" class="btn btn-primary">Search</button>
+                </div>
+                 <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Add Product Name</span>
+                    <input id="addProductName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <button type="button" class="btn btn-primary">Add</button>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Add Product Price</span>
+                    <input id="addProductPrice" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <button type="button" class="btn btn-primary">Add</button>
+                </div>
+                
+                
+                
+                
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+   
+
+
+</body>
+
+</html>
