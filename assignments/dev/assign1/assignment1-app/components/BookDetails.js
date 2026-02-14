@@ -39,13 +39,13 @@ export default function BookDetails({book}){
                 <br /><br />
                 <h5>More Infomation</h5>
                  {book.links?.length && (
-                   <span>
+                   <ul>
                         {book.links.map((link, i) =>(
                              <li key={i}>
                                 <a  href={link.url} target="_blank" rel="noopener noreferrer"> {link.title}</a>
                              </li>
                         ))}
-                    </span>
+                    </ul>
                    
                  )}
             </Col>
