@@ -21,7 +21,6 @@ export default function Home() {
    const [page, setPage ] = useState(1);
    const [pageData, setPageData] = useState([]);
 
-  // useEffect();
   const router = useRouter();
 
   const author = 'F. Scott Fitzgerald';
@@ -49,14 +48,8 @@ export default function Home() {
    
   return (
     <>
-     
-      {/* <p>Books</p> */}
       <PageHeader text={<strong>Novels by {author} </strong>} />
-      <p>{/*some thing here a p tag*/}</p>
-      <p>{/*some thing here a p tag*/}</p>
-      {/* <Pagination></Pagination> */}
       <Table striped className="table-hover">
-      
         <thead>
           <tr>
             <th>Title</th>
@@ -67,8 +60,9 @@ export default function Home() {
           {pageData?.docs?.map(book => (
             <tr key={book.key}  onClick={event => router.push(`${book.key}`)} >
                 <td>{book.title}</td>
+                {/* if no published year, show "N/A" */}
                 <td>{book.first_publish_year || "N/A" }</td>
-
+                
             </tr>
           ))}
         </tbody>
@@ -78,8 +72,6 @@ export default function Home() {
         <Pagination.Item>{page}</Pagination.Item>
         <Pagination.Next onClick={next} />    
     </Pagination>
-
-
     </>
   );
 }
