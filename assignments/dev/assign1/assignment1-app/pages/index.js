@@ -36,12 +36,16 @@ export default function Home() {
     }, [data]);
     console.log(data)
 
+    // function to go back a page 
+      // current page then -1 
     function previous () {
       if (page > 1) {
         setPage(prev => prev -1);
       };
     };
 
+    // function that goes to next page 
+      // page at then +  1 
     function next () {
       setPage(prev => prev +1);
     };
@@ -61,7 +65,7 @@ export default function Home() {
             <tr key={book.key}  onClick={event => router.push(`${book.key}`)} >
                 <td>{book.title}</td>
                 {/* if no published year, show "N/A" */}
-                <td>{book.first_publish_year || "N/A" }</td>
+                <td>{book.first_publish_year ?  book.first_publish_year : "N/A"}</td>
                 
             </tr>
           ))}
