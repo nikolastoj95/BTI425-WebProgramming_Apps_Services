@@ -21,20 +21,11 @@ export default function WorkId() {
         } else {
             return (
                 <>
+                    {/* Returns the clicked book and shows the details and title of it  */}
                     <PageHeader text=<strong>{data.title}</strong> />
                     <BookDetails book={data} />
                 </>
             )
         }
     } 
-
-    // <Error
-    return (
-        <>
-            
-            {/* <BookDetails  /> */}
-           <p>Work (Book) by WorkId  {workid}</p> 
-           
-        </>
-    )
 }
