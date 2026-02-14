@@ -20,24 +20,20 @@ export function getStaticProps() {
 }
 
 export default function About({book}){
-    console.log("here")
     
-
     return (
       <>
-        <p>About</p>
-        <PageHeader text=<strong>About the Developer: Nikola</strong> />
-        {/* <Link></Link> */}
-        {/* <Card></Card> */}
+        <PageHeader text=<strong>About the Developer: Nikola Stojanovic</strong> />
         <p>
-          If the data that is coming back from the API is not likely to change,
-          we may wish to include it in the pre-rendered HTML to speed up load
-          times and provide greater SEO. Next.js provides this functionality via
-          a mechanism called getStaticProps. This is essentially a function that
-          Next.js runs on the server when the app is built in order to obtain
-          data required to pre-render your pages. From our point of view, it is
-          a function that we can export from any "page" component to provide
-          data to any components on that page via "props".
+          Hello there, welcome to my website. My name is Nikola, and I am a student in a computer programming
+          program with a strong interest in developing websites and building
+          creative digital projects. I enjoy solving problems through code and
+          continuously improving my technical skills. In my free time, I like
+          swimming, which helps me stay active and relaxed. For my reading
+          selection, I chose The Great Gatsby, a well-known and engaging novel
+          that many readers enjoy. I have also watched the movie adaptation,
+          which made the story more interesting and helped me better understand
+          its characters and themes.
         </p>
         <BookDetails book={book} />
       </>
