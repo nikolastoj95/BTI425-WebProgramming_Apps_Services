@@ -4,11 +4,6 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 export default function MainNav () {
     return (
       <>
-        {/* <Container></Container>
-
-        <Nav></Nav>
-        <Navbar/> */}
-        {/* <Link></Link> */}
         <Navbar className="fixed-top navbar-dark bg-dark"  >
           <Container>
             <Navbar.Brand >Nikola Stojanovic</Navbar.Brand>
@@ -20,9 +15,6 @@ export default function MainNav () {
         </Navbar>
         <br />
         <br />
-       
-
-        {/* <p>MainNav</p> */}
       </>
     );
 }
