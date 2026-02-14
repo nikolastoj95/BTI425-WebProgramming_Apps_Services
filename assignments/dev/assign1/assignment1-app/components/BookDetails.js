@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Col, Container, Row } from "react-bootstrap";
 
 export default function BookDetails({book}){
-    const characters = book.subject_people;
+
     return (
       <>
         <Container>
@@ -41,17 +41,13 @@ export default function BookDetails({book}){
                  {book.links?.length && (
                    <span>
                         {book.links.map((link, i) =>(
-                             
-                                <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"> {link.title}</a>
-                             
+                             <li key={i}>
+                                <a  href={link.url} target="_blank" rel="noopener noreferrer"> {link.title}</a>
+                             </li>
                         ))}
                     </span>
                    
                  )}
-                <span><a></a></span>
-                
-
-
             </Col>
           </Row>
         </Container>
