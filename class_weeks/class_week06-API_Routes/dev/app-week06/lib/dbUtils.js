@@ -22,7 +22,7 @@ export async function mongooseConnect() {
   }
 
   try {
-    await mongoose.connect(`mongodb+srv://nikola:WebDev95@cluster0.l1s2jdh.mongodb.net/userstemp06?appName=Cluster0`);
+    await mongoose.connect(process.env.MONGO_URI);
     return true;
   } catch (err) {
     throw new Error(err);
