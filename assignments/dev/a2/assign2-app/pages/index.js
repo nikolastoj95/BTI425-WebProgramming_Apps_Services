@@ -1,81 +1,109 @@
-/*********************************************************************************
-* BTI425 – Assignment 1
-*
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
-*
-* https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
-*
-* Name: Nikola Stojanovic Student ID: 027 369 127 Date: Thursday Feb 12, 2026
-*
-********************************************************************************/
 import PageHeader from "@/components/PageHeader";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { Pagination, Table } from "react-bootstrap";
-import useSWR from "swr";
-
+import { Button, Col, Form, Row } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 export default function Home() {
+    const router = useRouter();
 
-   const [page, setPage ] = useState(1);
-   const [pageData, setPageData] = useState([]);
+    const {register, handleSubmit , formState: {errors}} = useForm({
+        defaultValues:{
+            author: "",
+            title: "",
+            subject: "",
+            language: "",
+        }
+    });
 
-  const router = useRouter();
+    function processSubmit (data) {
+        console.log(data)
+        router.push({
+            pathname: '/books',
+            query: Object.fromEntries(Object.entries(data).filter(([key, value]) => value !==''))
+        });
+        
 
-  const author = 'F. Scott Fitzgerald';
+    }
 
-   const {data, error} = useSWR( `https://openlibrary.org/search.json?author=${encodeURIComponent(author)}&page=${page}&limit=10`);
-    // `https://openlibrary.org/search.json?author=f.+scott+fitzgerald&page=1&limit=10`
-    //`https://openlibrary.org/search.json?author=${encodeURIComponent(author)}&page=${page}&limit=10`
-
-    useEffect(() => {
-      if (data) {
-        setPageData(data);
-      }
-    }, [data]);
-    console.log(data)
-
-    // function to go back a page 
-      // current page then -1 
-    function previous () {
-      if (page > 1) {
-        setPage(prev => prev -1);
-      };
-    };
-
-    // function that goes to next page 
-      // page at then +  1 
-    function next () {
-      setPage(prev => prev +1);
-    };
-   
-  return (
-    <>
-      <PageHeader text={<strong>Novels by {author} </strong>} />
-      <Table striped className="table-hover">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Published</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pageData?.docs?.map(book => (
-            <tr key={book.key}  onClick={event => router.push(`${book.key}`)} >
-                <td>{book.title}</td>
-                {/* if no published year, show "N/A" */}
-                <td>{book.first_publish_year ?  book.first_publish_year : "N/A"}</td>
-                
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-      <Pagination>
-        <Pagination.Prev onClick={previous} />
-        <Pagination.Item>{page}</Pagination.Item>
-        <Pagination.Next onClick={next} />    
-    </Pagination>
-    </>
-  );
+    return (
+      <>
+        <PageHeader
+          text={
+            <span>
+              <strong>Search for Books</strong> <br />
+              <br />
+            </span>
+          }
+          subtext={
+            <p>
+              Browse the extensive collection of books available on
+              openlibrary.org
+            </p>
+          }
+        />
+        <Form onSubmit={handleSubmit(processSubmit)}>
+          <Row>
+            <Col xs={12}>
+              <Form.Group controlId="formAuthor" className="mb-3">
+                <Form.Label>Author</Form.Label>
+                <Form.Control className={errors.author && 'is-invalid'} type="text" placeholder="Enter author" {...register('author', {required: true})} />
+                {errors.author?.type == 'required' && <><span style={{color:'red'}}>Author Required!</span></>}
+              </Form.Group>
+            </Col>
+          </Row>
+          
+          <Row>
+            <Col lg={6}>
+              <Form.Group controlId="formTitle" className="mb-3">
+                <Form.Label>Title</Form.Label>
+                <Form.Control type="text" placeholder="Enter title" {...register('title')}  />
+              </Form.Group>
+            </Col>
+            <Col lg={6}>
+              <Form.Group controlId="formSubject" className="mb-3">
+                <Form.Label>Subject (contains)</Form.Label>
+                <Form.Control type="text" placeholder="Enter subject keyword" {...register('subject')}  />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="mb-4">
+            <Col lg={6}>
+              <Form.Group controlId="formLanguage" className="mb-3">
+                <Form.Label>Language Code</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter language code (e.g. eng)"
+                  maxLength="3"
+                  {...register('language')} 
+                />
+              </Form.Group>
+            </Col>
+            <Col lg={6}>
+              <Form.Group controlId="formPublishYear" className="mb-3">
+                <Form.Label>First Published (Year)</Form.Label>
+                <Form.Control
+                  className={errors.first_publish_year && 'is-invalid'} 
+                  type="number"
+                  placeholder="Enter published year"
+                  {...register('first_publish_year', {min: 1000,validate: {aboveZero: v => v > 0 || v == ''}})}
+                 
+                />
+                 {errors.first_publish_year?.type == "aboveZero" && <><span style={{color:'red'}}>Year Has to be Postive</span></>}
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="mb-3">
+            <Col xs={12}>
+              <Button
+                variant="primary"
+                type="submit"
+                className="w-100 py-3 fs-5"
+              >
+                Search
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+      </>
+    );
 }
