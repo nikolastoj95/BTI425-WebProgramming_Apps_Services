@@ -1,11 +1,14 @@
 import { CountContext } from "@/pages/_app";
+import { countAtom } from "@/store";
 import { useAtom } from "jotai";
 import { useContext } from "react";
 
 export default function Component3() {
     console.log("rendering component 3")
 
-    const count = useContext(CountContext);
+    const [count, setCount] = useAtom(countAtom);
+
+    
 
     // const [count, setCount] = useAtom();
     // still rendering propblem 
