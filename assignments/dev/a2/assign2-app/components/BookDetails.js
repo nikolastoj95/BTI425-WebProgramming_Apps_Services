@@ -1,8 +1,30 @@
 /* eslint-disable @next/next/no-img-element */
+import { favouritesAtom } from "@/store";
+import { useAtom } from "jotai";
 import Image from "next/image";
-import { Col, Container, Row } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
-export default function BookDetails({book}){
+export default function BookDetails({book, workId, showFavouriteBtn = true}){
+  const  [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
+
+  
+  const [showAdded, setShowAdded] = useState(
+    favouritesList.includes(workId)
+  );
+
+  function favouritesClicked () {
+    console.log('favourites clicked, adding...')
+    if (showAdded) {
+      setFavouritesList(current => current.filter(fav => fav != workId))
+      setShowAdded(false)
+      console.log("removing")
+    } else {
+      setFavouritesList(current =>[...current, workId])
+      setShowAdded(true)
+      console.log("adding")
+    }
+  }
 
     return (
       <>
@@ -48,6 +70,12 @@ export default function BookDetails({book}){
                     </ul>
                    
                  )}
+                 {showFavouriteBtn && (
+                    <Button variant={showAdded ? 'primary' : 'outline-primary'} 
+                        onClick={favouritesClicked}>{showAdded ? "+ Favourite (added)" :  "+ Favourite"}   
+                    </Button>
+                 )}
+                 
             </Col>
           </Row>
         </Container>
