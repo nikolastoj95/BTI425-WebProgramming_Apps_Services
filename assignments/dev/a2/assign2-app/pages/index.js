@@ -30,15 +30,14 @@ export default function Home() {
         <PageHeader
           text={
             <span>
-              <strong>Search for Books</strong> <br />
-              <br />
+              <h1>Search for Books</h1>
             </span>
           }
           subtext={
-            <p>
+            <h5 className="text-primary-emphasis">
               Browse the extensive collection of books available on
               openlibrary.org
-            </p>
+            </h5>
           }
         />
         <Form onSubmit={handleSubmit(processSubmit)}>
@@ -47,7 +46,7 @@ export default function Home() {
               <Form.Group controlId="formAuthor" className="mb-3">
                 <Form.Label>Author</Form.Label>
                 <Form.Control className={errors.author && 'is-invalid'} type="text" placeholder="Enter author" {...register('author', {required: true})} />
-                {errors.author?.type == 'required' && <><span style={{color:'red'}}>Author Required!</span></>}
+                {errors.author?.type == 'required' && <><span className="formError">Author Required!</span></>}
               </Form.Group>
             </Col>
           </Row>
@@ -85,10 +84,10 @@ export default function Home() {
                   className={errors.first_publish_year && 'is-invalid'} 
                   type="number"
                   placeholder="Enter published year"
-                  {...register('first_publish_year', {min: 1000,validate: {aboveZero: v => v > 0 || v == ''}})}
+                  {...register('first_publish_year', {validate: {aboveZero: v => v > 0 || v == ''}})}
                  
                 />
-                 {errors.first_publish_year?.type == "aboveZero" && <><span style={{color:'red'}}>Year Has to be Postive</span></>}
+                 {errors.first_publish_year?.type == "aboveZero" && <><span className="formError">Year Has to be Postive</span></>}
               </Form.Group>
             </Col>
           </Row>
