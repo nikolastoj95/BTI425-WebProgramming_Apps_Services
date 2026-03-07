@@ -35,7 +35,7 @@ export default function About({book}){
           which made the story more interesting and helped me better understand
           its characters and themes.
         </p>
-        <BookDetails book={book} />
+        <BookDetails book={book} workId={'OL468431W'} showFavouriteBtn={false} />
       </>
     );
 }
