@@ -1,0 +1,11 @@
+.is-invalid {
+    color: red;
+}
+.formError {
+    color: red;
+    font-weight: bold;
+}
+.headerTitles {
+    font-weight: bold;
+}
+
