@@ -1,3 +1,4 @@
+import BookCard from "@/components/BookCard";
 import PageHeader from "@/components/PageHeader";
 import { favouritesAtom } from "@/store";
 import { useAtom } from "jotai"
@@ -19,8 +20,9 @@ export default function Favourites(){
             {favouritesList.length >0 && (
                 <Row className="gy-4">
                     {favouritesList.map((workId)=> (
-                        <Col  lg={3} md={6} key={workId}>
+                        <Col  lg={3} md={6} key={workId} className="m-3">
                             <p>{workId}</p> 
+                            <BookCard workId={workId}/><br/>
                         </Col>
 
                     ))}
