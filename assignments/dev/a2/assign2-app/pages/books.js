@@ -76,7 +76,8 @@ console.log(`parameter: ${key} - value: ${router.query[key]}`);
    
   return (
     <>
-      <PageHeader text={<strong>Search Results</strong>} subtext={<p>author:{author}</p>} />
+      
+      <PageHeader text={<h1>Search Results</h1>} subtext={<h5 className="text-primary-emphasis">Novels By: {author}</h5>} />
       <Table striped className="table-hover">
         <thead>
           <tr>
