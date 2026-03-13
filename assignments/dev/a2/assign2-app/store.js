@@ -1,2 +1,2 @@
-import {atom, useAtom} from 'jotai';
+import {atom} from 'jotai';
 export const favouritesAtom = atom([]);
