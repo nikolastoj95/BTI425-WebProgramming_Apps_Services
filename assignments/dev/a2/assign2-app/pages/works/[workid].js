@@ -22,8 +22,8 @@ export default function WorkId() {
             return (
                 <>
                     {/* Returns the clicked book and shows the details and title of it  */}
-                    <PageHeader text=<strong>{data.title}</strong> />
-                    <BookDetails book={data} />
+                    <PageHeader text=<h1>{data.title}</h1> />
+                    <BookDetails book={data} workId={workid} />
                 </>
             )
         }
