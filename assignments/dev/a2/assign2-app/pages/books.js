@@ -1,14 +1,3 @@
-/*********************************************************************************
-* BTI425 – Assignment 1
-*
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
-*
-* https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
-*
-* Name: Nikola Stojanovic Student ID: 027 369 127 Date: Thursday Feb 12, 2026
-*
-********************************************************************************/
 import PageHeader from "@/components/PageHeader";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
