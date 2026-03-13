@@ -18,7 +18,7 @@ let User;
 
 module.exports.connect = function () {
     return new Promise(function (resolve, reject) {
-        let db = mongoose.createConnection(mongoDBConnectionString);
+        let db = mongoose.createConnection(process.env.MONGO_URI);
 
         db.on('error', (err) => {
             reject(err); // reject the promise with the provided error
