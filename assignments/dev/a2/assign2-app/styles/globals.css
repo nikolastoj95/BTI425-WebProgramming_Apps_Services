@@ -3,3 +3,7 @@
     color: red;
     font-weight: bold;
 }
+.bookSubText {
+    font-style: italic;
+    font-weight:400;
+}
