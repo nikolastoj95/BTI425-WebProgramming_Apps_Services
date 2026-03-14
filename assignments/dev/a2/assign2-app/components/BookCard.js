@@ -18,7 +18,7 @@ export default function BookCard({workId}){
       } else {
         return (
           <>
-            <h1>BookCard - {workId}</h1>
+            {/* <h1>BookCard - {workId}</h1> */}
             <Card style={{ width: "18rem" }} >
               <Card.Img variant="top" 
                         onError={(event) => {
@@ -31,37 +31,15 @@ export default function BookCard({workId}){
                         alt="Cover Image"
                 />
               <Card.Body>
-                <Card.Title>{data?.title }</Card.Title>
+                <Card.Title>{data?.title}</Card.Title>
                 <Card.Text>
-                  {data?.first_published_date ? data?.first_published_date : "N/A" }
+                  {data.first_publish_date ?  data.first_publish_date : "N/A" }
                 </Card.Text>
-                <Button variant="primary" as={Link} href={`/works/${workId}`}>View Book</Button>
+                <Button variant="btn btn-outline-primary" as={Link} href={`/works/${workId}`}>View Book</Button>
               </Card.Body>
             </Card>
-
-
-            {/* <img
-                onError={(event) => {
-                  event.target.onerror = null; // Remove the event handler to prevent infinite loop
-                  event.target.src =
-                    "https://placehold.co/400x600?text=Cover+Not+Available";
-                }}
-                className="img-fluid w-100"
-                src={`https://covers.openlibrary.org/b/id/${book?.covers?.[0]}-L.jpg`}
-                alt="Cover Image"
-              /> */}
-
-
-
-
-
-
-
-
           </>
         );
       };
     };
-
-    
 }
