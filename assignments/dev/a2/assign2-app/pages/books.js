@@ -31,8 +31,8 @@ export default function Books() {
   console.log(queryString)
 
   Object.keys(router.query).forEach(key=>{
-console.log(`parameter: ${key} - value: ${router.query[key]}`);
-})
+    console.log(`parameter: ${key} - value: ${router.query[key]}`);
+  })
 
 
 
@@ -66,7 +66,7 @@ console.log(`parameter: ${key} - value: ${router.query[key]}`);
   return (
     <>
       
-      <PageHeader text={<h1>Search Results</h1>} subtext={<h5 className="text-primary-emphasis">Novels By: {author}</h5>} />
+      <PageHeader text={<h1 class="display-3">Search Results</h1>} subtext={<p className="lead"><span className="bookSubText">author:</span> {author}</p>} />
       <Table striped className="table-hover">
         <thead>
           <tr>
