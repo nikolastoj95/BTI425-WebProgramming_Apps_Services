@@ -39,16 +39,12 @@ export default function Home() {
     return (
       <>
         <PageHeader
-          text={
-            <span>
-              <h1>Search for Books</h1>
-            </span>
-          }
+          text={ <h1 class="display-3">Search for Books</h1>}
           subtext={
-            <h5 className="text-primary-emphasis">
+            <p class="lead">
               Browse the extensive collection of books available on
               openlibrary.org
-            </h5>
+            </p>
           }
         />
         <Form onSubmit={handleSubmit(processSubmit)}>
@@ -98,7 +94,7 @@ export default function Home() {
                   {...register('first_publish_year', {validate: {aboveZero: v => v > 0 || v == ''}})}
                  
                 />
-                 {errors.first_publish_year?.type == "aboveZero" && <><span className="formError">Year Has to be Postive</span></>}
+                 {errors.first_publish_year?.type == "aboveZero" && <><span className="formError">Year Has to be Above 0</span></>}
               </Form.Group>
             </Col>
           </Row>
