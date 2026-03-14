@@ -23,7 +23,7 @@ export default function About({book}){
     
     return (
       <>
-        <PageHeader text=<strong>About the Developer: Nikola Stojanovic</strong> />
+        <PageHeader text={<h1 className="display-3">About the Developer</h1>}  subtext= {<p className="lead">Nikola Stojanovic</p>}/>
         <p>
           Hello there, welcome to my website. My name is Nikola, and I am a student in a computer programming
           program with a strong interest in developing websites and building
