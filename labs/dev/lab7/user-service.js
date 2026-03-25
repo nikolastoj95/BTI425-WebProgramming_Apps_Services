@@ -12,7 +12,12 @@ let userSchema = new Schema({
   },
   password: String,
   fullName: String,
-  role: String
+  role: {
+    type: String,
+    required: true,
+    enum: ['public', 'admin','editor'],
+    default : 'public'
+  }
 });
 
 let User;
@@ -34,6 +39,9 @@ module.exports.connect = function () {
 
 module.exports.registerUser =  function (userData) {
     return new Promise(function (resolve, reject) {
+
+        console.log(userData.password)
+        console.log(userData.password1)
 
         if (userData.password != userData.password2) {
             reject("Passwords do not match");
@@ -72,7 +80,7 @@ module.exports.checkUser = function (userData) {
             } else {
                 bcrypt.compare(userData.password, users[0].password).then((res) => {
                     if (res === true) {
-                        resolve(users[0]);
+                        resolve({ user: users[0], message: "login sucessful"});
                     } else {
                         reject("Incorrect password for user " + userData.userName);
                     }
