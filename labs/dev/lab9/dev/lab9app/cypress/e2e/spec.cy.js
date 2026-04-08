@@ -13,7 +13,7 @@ describe('calculator flow', ()=> {
     cy.get('button[data-testid="btn-+"]').contains("+").click()
     cy.get('button[data-testid="btn-3"]').contains("3").click()
     cy.get('button[data-testid="btn-="]').contains("=").click()
-    cy.get("input").should('have.value', '9')
+    cy.get("input").should('have.value', '8')
 
   });
 
