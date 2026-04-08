@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./labs/dev/lab9/dev/lab9app
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: labs/dev/lab9/dev/lab9app
+          start: npm run dev
+          wait-on: 'http://localhost:3000'
