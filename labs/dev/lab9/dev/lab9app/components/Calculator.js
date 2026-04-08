@@ -3,6 +3,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 export default function Calculator() {
     const [display, setDisplay] = useState("0");
+    //const something
 
     function handleClick (value) {
         console.log(`clicked ${value}`);
@@ -51,35 +52,35 @@ export default function Calculator() {
                
                  <Row  className="g-2 mb-2">
                     <Col><Button className="w-100 py-3" onClick={()=> handleClick("4")}>4</Button></Col>
-                    <Col> <Button className="w-100 py-3" onClick={()=> handleClick("5")}>5</Button></Col>
+                    <Col> <Button  data-testid="btn-5" className="w-100 py-3" onClick={()=> handleClick("5")}>5</Button></Col>
                     <Col><Button className="w-100 py-3" onClick={()=> handleClick("6")}>6</Button></Col>
                 </Row>
                 
                 <Row  className="g-2 mb-2">
                     <Col><Button className="w-100 py-3" onClick={()=> handleClick("1")}>1</Button></Col>
                     <Col><Button className="w-100 py-3" onClick={()=> handleClick("2")}>2</Button></Col>
-                    <Col> <Button className="w-100 py-3" onClick={()=> handleClick("3")}>3</Button></Col>
+                    <Col> <Button data-testid="btn-3" className="w-100 py-3" onClick={()=> handleClick("3")}>3</Button></Col>
                 </Row>
                 
                 <Row  className="g-2 mb-2"><Col><Button className="w-100 py-3" onClick={()=> handleClick("0")}>0</Button></Col></Row>
 
                 <Col className="g-2 mb-2"> 
-                    <Button onClick={()=> handleClick("+")}>+</Button>
+                    <Button data-testid="btn-+" onClick={()=> handleClick("+")}>+</Button>
                 </Col>
                 <Col className="g-2 mb-2">
-                    <Button onClick={()=> handleClick("-")}>-</Button>
+                    <Button data-testid="btn--" onClick={()=> handleClick("-")}>-</Button>
                 </Col>
                 <Col className="g-2 mb-2"> 
-                    <Button onClick={()=> handleClick("*")}>*</Button> 
+                    <Button data-testid="btn-*" onClick={()=> handleClick("*")}>*</Button> 
                 </Col>
                 <Col className="g-2 mb-2">
-                    <Button onClick={()=> handleClick("/")}>/</Button>
+                    <Button data-testid="btn-/" onClick={()=> handleClick("/")}>/</Button>
                 </Col>
                 <Col className="g-2 mb-2">
-                    <Button onClick={handleClear}>C</Button>
+                    <Button data-testid="btn-C" onClick={handleClear}>C</Button>
                 </Col>
                 <Row className="g-2 mb-2">
-                    <Button onClick={handleEqual}>=</Button>
+                    <Button  data-testid="btn-=" onClick={handleEqual}>=</Button>
                 </Row>
 
                 <Form.Control type="text" value={display} readOnly />
