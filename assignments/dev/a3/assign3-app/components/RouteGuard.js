@@ -6,8 +6,8 @@ import {  useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const PUBLIC_PATHS = ['/login', '/_error', '/register', '/about'];
-//above could be here or in .env varable
 
+//process.env.
 
 export default function RouteGuard({children}) {
 
