@@ -44,7 +44,7 @@ export default function Login(){
         <PageHeader text={<h1 class="display-3">Login</h1>} subtext={<p className="lead">Enter Login Information Below </p>} />
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>User:</Form.Label>
+            <Form.Label style={fontWeight= 'bold'}>User:</Form.Label>
             <Form.Control
               value={user}
               onChange={(e) => setUser(e.target.value)}
@@ -55,7 +55,7 @@ export default function Login(){
           </Form.Group>
           
           <Form.Group className="mb-3">
-            <Form.Label>Password:</Form.Label>
+            <Form.Label style={fontWeight= 'bold'}>Password:</Form.Label>
             <Form.Control
               value={password}
               onChange={(e) => setPassword(e.target.value)}

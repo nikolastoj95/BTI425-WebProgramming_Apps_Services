@@ -38,7 +38,7 @@ export default function Register(){
         <PageHeader text={<h1 class="display-3">Register</h1>} subtext={<p className="lead">Register for an account: </p>} />
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>User:</Form.Label>
+            <Form.Label style={fontWeight= 'bold'}>User:</Form.Label>
             <Form.Control
               value={user}
               onChange={(e) => setUser(e.target.value)}
@@ -49,7 +49,7 @@ export default function Register(){
           </Form.Group>
          
           <Form.Group className="mb-3">
-            <Form.Label>Password:</Form.Label>
+            <Form.Label style={fontWeight= 'bold'}>Password:</Form.Label>
             <Form.Control
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -60,7 +60,7 @@ export default function Register(){
           </Form.Group>
           
           <Form.Group className="mb-3">
-            <Form.Label>Re-Enter Password:</Form.Label>
+            <Form.Label style={fontWeight= 'bold'}>Re-Enter Password:</Form.Label>
             <Form.Control
               value={password2}
               onChange={(e) => setPassword2(e.target.value)}
