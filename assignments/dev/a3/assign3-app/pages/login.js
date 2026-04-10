@@ -10,7 +10,6 @@ import { Alert, Button, Card, Col, Form, Row } from "react-bootstrap";
 export default function Login(){
 
     const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
-
     const router = useRouter();
 
     const [user, setUser] = useState('');
@@ -33,6 +32,7 @@ export default function Login(){
         }
        
         console.log(`TODO: Submit Form userName is ${user} and password is ${password} `)
+        
     };
 
     async function updateAtom () {
