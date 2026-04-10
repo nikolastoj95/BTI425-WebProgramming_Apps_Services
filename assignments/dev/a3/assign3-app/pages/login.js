@@ -49,7 +49,7 @@ export default function Login(){
         <br /> */}
         <PageHeader text={<h1 class="display-3">Login</h1>} subtext={<p className="lead">Enter Login Information Below </p>} />
         <Form onSubmit={handleSubmit}>
-          <Form.Group>
+          <Form.Group className="mb-3">
             <Form.Label>User:</Form.Label>
             <Form.Control
               value={user}
@@ -59,8 +59,8 @@ export default function Login(){
               name="userName"
             />
           </Form.Group>
-          <br />
-          <Form.Group>
+          
+          <Form.Group className="mb-3">
             <Form.Label>Password:</Form.Label>
             <Form.Control
               value={password}
@@ -70,7 +70,7 @@ export default function Login(){
               name="password"
             />
           </Form.Group>
-          <br />
+          
           <Button variant="primary" className="pull-right" type="submit">
             Login
           </Button>
