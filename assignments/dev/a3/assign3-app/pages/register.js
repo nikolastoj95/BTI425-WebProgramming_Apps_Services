@@ -60,7 +60,7 @@ export default function Register(){
           </Form.Group>
           <br />
           <Form.Group>
-            <Form.Label>Password 2:</Form.Label>
+            <Form.Label>Re-Enter Password:</Form.Label>
             <Form.Control
               value={password2}
               onChange={(e) => setPassword2(e.target.value)}
