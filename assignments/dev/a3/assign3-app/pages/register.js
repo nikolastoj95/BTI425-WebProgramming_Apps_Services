@@ -7,8 +7,6 @@ import { Alert, Button, Card, Col, Form, Row } from "react-bootstrap";
 
 export default function Register(){
 
-   
-
     const router = useRouter();
 
     const [user, setUser] = useState('');
