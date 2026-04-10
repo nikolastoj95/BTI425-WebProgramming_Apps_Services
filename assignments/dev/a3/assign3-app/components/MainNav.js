@@ -5,14 +5,12 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 export default function MainNav () {
      const token = readToken();
-     
      const router = useRouter();
 
     function logout () {
       console.log('logging out!')
       removeToken();
       router.push('/login');
-      
     }
 
     return (
@@ -31,7 +29,7 @@ export default function MainNav () {
                 Favourites
               </Nav.Link> */}
             </Nav>
-            {token && (
+            {token ? (
               <Nav>
                 <NavDropdown title={token.userName} id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} href="/favourites" >Favourites</NavDropdown.Item>
@@ -47,12 +45,37 @@ export default function MainNav () {
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-            )}
-            {!token && (
+
+
+
+
+
+
+            ): (
               <Nav>
                 <Nav.Link as={Link} href="/register">Register</Nav.Link>
               </Nav>
             )}
+
+
+            {/* {token && (
+              <Nav>
+                <NavDropdown title={token.userName} id="basic-nav-dropdown">
+                  <NavDropdown.Item as={Link} href="/favourites" >Favourites</NavDropdown.Item>
+                  
+                  
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item  onClick={logout}>
+                    LogOut
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+            )} */}
+            {/* {!token && (
+              <Nav>
+                <Nav.Link as={Link} href="/register">Register</Nav.Link>
+              </Nav>
+            )} */}
           </Container>
         </Navbar>
         <br />
