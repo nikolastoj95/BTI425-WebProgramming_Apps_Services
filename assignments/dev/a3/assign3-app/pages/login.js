@@ -1,3 +1,4 @@
+import PageHeader from "@/components/PageHeader";
 import { authenticateUser } from "@/lib/authenticate";
 import { getFavourites } from "@/lib/userData";
 import { favouritesAtom } from "@/store";
@@ -40,12 +41,13 @@ export default function Login(){
     
     return (
       <>
-        <Card bg="light">
+        {/* <Card bg="light">
           <Card.Body>
             <h2>Login</h2>Enter your login information below:
           </Card.Body>
         </Card>
-        <br />
+        <br /> */}
+        <PageHeader text={<h1 class="display-3">Login</h1>} subtext={<p className="lead">Enter Login Information Below </p>} />
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>User:</Form.Label>
