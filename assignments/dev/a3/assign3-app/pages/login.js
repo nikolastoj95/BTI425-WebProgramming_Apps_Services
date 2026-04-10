@@ -41,12 +41,6 @@ export default function Login(){
     
     return (
       <>
-        {/* <Card bg="light">
-          <Card.Body>
-            <h2>Login</h2>Enter your login information below:
-          </Card.Body>
-        </Card>
-        <br /> */}
         <PageHeader text={<h1 class="display-3">Login</h1>} subtext={<p className="lead">Enter Login Information Below </p>} />
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
