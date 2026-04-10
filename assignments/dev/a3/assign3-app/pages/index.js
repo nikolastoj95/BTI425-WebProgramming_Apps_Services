@@ -1,12 +1,14 @@
-/********************************************************************************
-* BTI425 – Assignment 02
+/*********************************************************************************
+* BTI425 – Assignment 3
 *
 * I declare that this assignment is my own work in accordance with Seneca's
 * Academic Integrity Policy:
 *
 * https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
 *
-* Name: Nikola Stojanovic Student ID: 027 369 149 Date:  Friday March 13, 2026 
+* Name: Nikola Stojanovic Student ID: 027 369 149 Date: April 10, 2026
+*
+* Vercel App (Deployed) Link: assign3bookstore-app.vercel.app
 *
 ********************************************************************************/
 import PageHeader from "@/components/PageHeader";
