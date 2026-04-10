@@ -1,3 +1,4 @@
+import PageHeader from "@/components/PageHeader";
 import registerUser from "@/lib/authenticate";
 
 import { useRouter } from "next/router";
@@ -20,12 +21,11 @@ export default function Register(){
         try {
             await registerUser(user,password,password2);
             console.log("logged in");
-            //redirect to vechile to veciles route
-
-           
             router.push(`/login`);
+            //redirect to login page
             
         } catch (err) {
+            // error on backend 
             console.log(err.message)
             setMessage(err.message)
         }
@@ -37,12 +37,7 @@ export default function Register(){
     
     return (
       <>
-        <Card bg="light">
-          <Card.Body>
-            <h2>Register</h2>Register for an Account:
-          </Card.Body>
-        </Card>
-        <br />
+        <PageHeader text={<h1 class="display-3">Register</h1>} subtext={<p className="lead">Register for an account: </p>} />
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>User:</Form.Label>
