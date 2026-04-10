@@ -1,26 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
+import { addToFavourites, removeFromFavourites } from "@/lib/userData";
 import { favouritesAtom } from "@/store";
 import { useAtom } from "jotai";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
 export default function BookDetails({book, workId, showFavouriteBtn = true}){
   const  [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
 
   
-  const [showAdded, setShowAdded] = useState(
-    favouritesList.includes(workId)
+  const [showAdded, setShowAdded] = useState( 
+    false
+    // favouritesList.includes(workId)
   );
 
-  function favouritesClicked () {
+  useEffect(()=> {
+    setShowAdded(favouritesList?.includes(workId))
+  }, [favouritesList,workId]);
+
+  async function favouritesClicked () {
     console.log('favourites clicked, adding...')
-    if (showAdded) {
-      setFavouritesList(current => current.filter(fav => fav != workId))
+    if (showAdded) { // if true (i.e it is in the favourites list)
+
+      // setFavouritesList(current => current.filter(fav => fav != workId))
+      setFavouritesList(await removeFromFavourites(workId));
       setShowAdded(false)
       console.log("removing")
     } else {
-      setFavouritesList(current =>[...current, workId])
+      // setFavouritesList(current =>[...current, workId])
+      setFavouritesList(await addToFavourites(workId));
       setShowAdded(true)
       console.log("adding")
     }
