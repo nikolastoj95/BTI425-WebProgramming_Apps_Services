@@ -25,7 +25,7 @@ export default function MainNav () {
                 About
               </Nav.Link>
             </Nav>
-            {token ? (
+            {token ? ( // token there show dropdown with favourites, log out link and user name displayed
               <Nav>
                 <NavDropdown title={token.userName} id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} href="/favourites" >Favourites</NavDropdown.Item>
