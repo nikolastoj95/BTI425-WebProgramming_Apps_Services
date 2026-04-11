@@ -3,21 +3,20 @@ import registerUser from "@/lib/authenticate";
 
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Alert, Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Alert, Button, Form} from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 export default function Register(){
 
     const router = useRouter();
-
-    const [user, setUser] = useState('');
-    const [password, setPassword] = useState('');
-    const [password2,  setPassword2] =useState('');
     const [message,setMessage] = useState('');
+    const {register, handleSubmit , formState: {errors}} = useForm({
+                
+      });
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+    async function registerSubmit(data) {
         try {
-            await registerUser(user,password,password2);
+            await registerUser(data.user,data.password,data.password2);
             console.log("logged in");
             router.push(`/login`);
             //redirect to login page
@@ -27,8 +26,6 @@ export default function Register(){
             console.log(err.message)
             setMessage(err.message)
         }
-       
-        console.log(`TODO: Submit Form userName is ${user} and password is ${password} `)
     };
 
     
@@ -36,38 +33,36 @@ export default function Register(){
     return (
       <>
         <PageHeader text={<h1 class="display-3">Register</h1>} subtext={<p className="lead">Register for an account: </p>} />
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit(registerSubmit)}>
           <Form.Group className="mb-3">
-            <Form.Label style={fontWeight= 'bold'}>User:</Form.Label>
+            <Form.Label>User:</Form.Label>
             <Form.Control
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              className={errors.user && 'is-invalid'}
               type="text"
-              id="userName"
-              name="userName"
+              {...register('user',{required:true})}
+             
             />
+            {errors.user?.type === 'required' && <><span className="formError"> This Field is Required!</span></>}
           </Form.Group>
          
           <Form.Group className="mb-3">
-            <Form.Label style={fontWeight= 'bold'}>Password:</Form.Label>
+            <Form.Label >Password:</Form.Label>
             <Form.Control
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              className={errors.password && 'is-invalid'}
               type="password"
-              id="password"
-              name="password"
+              {...register('password',{required:true})}
             />
+            {errors.password?.type === 'required' && <><span className="formError"> This Field is Required!</span></>}
           </Form.Group>
           
           <Form.Group className="mb-3">
-            <Form.Label style={fontWeight= 'bold'}>Re-Enter Password:</Form.Label>
+            <Form.Label >Re-Enter Password:</Form.Label>
             <Form.Control
-              value={password2}
-              onChange={(e) => setPassword2(e.target.value)}
+              className={errors.password2 && 'is-invalid'}
               type="password"
-              id="password2"
-              name="password2"
+              {...register('password2',{required:true})}
             />
+            {errors.password2?.type === 'required' && <><span className="formError"> This Field is Required!</span></>}
           </Form.Group>
           <br/>
           <Button variant="primary" className="pull-right" type="submit">
