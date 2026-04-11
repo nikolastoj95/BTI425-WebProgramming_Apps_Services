@@ -5,9 +5,8 @@ import { useAtom } from "jotai";
 import {  useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const PUBLIC_PATHS = ['/login', '/_error', '/register', '/about'];
+const PUBLIC_PATHS = ['/login', '/_error', '/register', '/about']; // routes allowed when not authenticated
 
-//process.env.
 
 export default function RouteGuard({children}) {
 
