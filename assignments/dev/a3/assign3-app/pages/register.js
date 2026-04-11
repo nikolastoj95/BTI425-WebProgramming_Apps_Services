@@ -10,9 +10,7 @@ export default function Register(){
 
     const router = useRouter();
     const [message,setMessage] = useState('');
-    const {register, handleSubmit , formState: {errors}} = useForm({
-                
-      });
+    const {register, handleSubmit , formState: {errors}} = useForm({});
 
     async function registerSubmit(data) {
         try {
