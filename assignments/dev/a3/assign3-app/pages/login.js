@@ -5,7 +5,7 @@ import { favouritesAtom } from "@/store";
 import { useAtom } from "jotai";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Alert, Button, Form, } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 export default function Login(){
