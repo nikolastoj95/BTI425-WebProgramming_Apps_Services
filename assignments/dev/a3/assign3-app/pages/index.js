@@ -34,8 +34,6 @@ export default function Home() {
             pathname: '/books',
             query: Object.fromEntries(Object.entries(data).filter(([key, value]) => value !==''))
         });
-        
-
     }
 
     return (
