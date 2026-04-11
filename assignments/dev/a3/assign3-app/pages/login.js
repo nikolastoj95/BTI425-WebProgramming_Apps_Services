@@ -5,24 +5,23 @@ import { favouritesAtom } from "@/store";
 import { useAtom } from "jotai";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Alert, Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Alert, Button, Form, } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 export default function Login(){
 
     const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
     const router = useRouter();
 
-    const [user, setUser] = useState('');
-    const [password, setPassword] = useState('');
     const [message,setMessage] = useState('');
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        try {
-            await authenticateUser(user,password);
-            console.log("logged in");
-            //redirect to vechile to veciles route
+     const {register, handleSubmit , formState: {errors}} = useForm({});
 
+    async function loginSubmit(data) {
+        console.log(data)
+        try {
+            await authenticateUser(data.user,data.password);
+            console.log("logged in");
             await updateAtom();
             router.push(`/`)
             
@@ -30,9 +29,6 @@ export default function Login(){
             console.log(err.message)
             setMessage(err.message)
         }
-       
-        console.log(`TODO: Submit Form userName is ${user} and password is ${password} `)
-        
     };
 
     async function updateAtom () {
@@ -42,27 +38,25 @@ export default function Login(){
     return (
       <>
         <PageHeader text={<h1 class="display-3">Login</h1>} subtext={<p className="lead">Enter Login Information Below </p>} />
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit(loginSubmit)}>
           <Form.Group className="mb-3">
-            <Form.Label style={fontWeight= 'bold'}>User:</Form.Label>
+            <Form.Label >User:</Form.Label>
             <Form.Control
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              className={errors.user && 'is-invalid'}
               type="text"
-              id="userName"
-              name="userName"
+              {...register('user',{required:true})}
             />
+            {errors.user?.type === 'required' && <><span className="formError"> This Field is Required!</span></>}
           </Form.Group>
           
           <Form.Group className="mb-3">
-            <Form.Label style={fontWeight= 'bold'}>Password:</Form.Label>
+            <Form.Label >Password:</Form.Label>
             <Form.Control
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              className={errors.password && 'is-invalid'}
               type="password"
-              id="password"
-              name="password"
+              {...register('password',{required:true})}
             />
+             {errors.password?.type === 'required' && <><span className="formError"> This Field is Required!</span></>}
           </Form.Group>
           
           <Button variant="primary" className="pull-right" type="submit">
